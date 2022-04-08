@@ -15,6 +15,8 @@ class ViewController: UIViewController{
     
     @IBOutlet weak var contentView: UIView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var detailsVC : DetailViewController!
     
     @IBOutlet weak var top: NSLayoutConstraint!
@@ -26,6 +28,8 @@ class ViewController: UIViewController{
         
         self.tabBar.delegate  = self
         self.searchBar.delegate = self
+        
+        self.activityIndicator.isHidden = true
         
         self.addDetailView()
     }
@@ -52,7 +56,6 @@ class ViewController: UIViewController{
     
     fileprivate func animateTop(withConstant: CGFloat){
      
-        
         UIView.animate(withDuration: 0.5) {
             self.top.constant = withConstant
             self.view.layoutIfNeeded()
@@ -61,7 +64,6 @@ class ViewController: UIViewController{
 
     }
 }
-
 
 //MARK: - Tab Bar Delegate
 
@@ -90,10 +92,15 @@ extension ViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        
         APIManager.shared.fetchMeaning(for: searchBar.text ?? "") { word in
             print("Phonetic: \(word.phonetic) Word: \(word.word)")
             
             DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
                 self.detailsVC.displayData(word)
             }
         }

@@ -50,6 +50,10 @@
                                     <tabBarItem tag="1" systemItem="history" id="YGs-WY-xEL"/>
                                 </items>
                             </tabBar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="UhK-pN-Scb">
+                                <rect key="frame" x="188.5" y="432.5" width="37" height="37"/>
+                                <color key="color" systemColor="linkColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r0P-wE-nPr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -60,14 +64,17 @@
                             <constraint firstItem="gei-mH-J9Q" firstAttribute="bottom" secondItem="r0P-wE-nPr" secondAttribute="bottom" id="Lxm-4y-ac5"/>
                             <constraint firstItem="unC-MC-RhB" firstAttribute="top" secondItem="FBG-02-7XZ" secondAttribute="top" constant="51" id="PDC-c9-u03"/>
                             <constraint firstItem="FBG-02-7XZ" firstAttribute="leading" secondItem="r0P-wE-nPr" secondAttribute="leading" constant="8" id="RgX-P7-Hlc"/>
+                            <constraint firstItem="UhK-pN-Scb" firstAttribute="centerX" secondItem="unC-MC-RhB" secondAttribute="centerX" id="XMP-bb-B0a"/>
                             <constraint firstItem="gei-mH-J9Q" firstAttribute="top" secondItem="unC-MC-RhB" secondAttribute="bottom" constant="16" id="bAP-P1-jgi"/>
                             <constraint firstItem="FBG-02-7XZ" firstAttribute="top" secondItem="r0P-wE-nPr" secondAttribute="top" id="kWI-rH-X7a"/>
                             <constraint firstItem="unC-MC-RhB" firstAttribute="leading" secondItem="r0P-wE-nPr" secondAttribute="leading" constant="16" id="nyA-qw-Aek"/>
+                            <constraint firstItem="UhK-pN-Scb" firstAttribute="centerY" secondItem="unC-MC-RhB" secondAttribute="centerY" id="u5x-NA-EKV"/>
                             <constraint firstItem="r0P-wE-nPr" firstAttribute="trailing" secondItem="unC-MC-RhB" secondAttribute="trailing" constant="16" id="w4a-Ah-mwW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dictionary" id="NNV-gJ-G3P"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="UhK-pN-Scb" id="cNM-Yx-iqU"/>
                         <outlet property="contentView" destination="unC-MC-RhB" id="t04-vz-d6h"/>
                         <outlet property="searchBar" destination="FBG-02-7XZ" id="mbJ-oE-uel"/>
                         <outlet property="tabBar" destination="gei-mH-J9Q" id="kB7-I6-UTv"/>
@@ -257,6 +264,9 @@
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="volume.1.fill" catalog="system" width="128" height="108"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

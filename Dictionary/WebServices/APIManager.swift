@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class APIManager {
     
@@ -14,6 +15,20 @@ class APIManager {
     static let shared = APIManager()
     
     func fetchMeaning(for word: String, _ completion: @escaping(WordFeed) -> Void)  {
+        
+        let dataHelper = DataHandler()
+        
+        if let managedObjects = dataHelper.fetchData(for: word.lowercased()){
+            
+            if let jsonData = managedObjects.first?.value(forKey: "wordData") as? NSData{
+                if let json  = try? JSONSerialization.jsonObject(with: jsonData as Data, options: []) as? [Any] {
+                    completion( dataHelper.parseWord(from: json, jsonData as Data))
+                    
+                    return
+                }
+            }
+    
+        }
         
         let url = URL(string: self.baseURL + word)!
         
@@ -29,7 +44,10 @@ class APIManager {
             if let jsonData = data {
                 
                 if let json  = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [Any] {
-                    completion( DataHandler().parseWord(from: json, jsonData))
+                    completion( dataHelper.parseWord(from: json, jsonData))
+                }
+                else{
+                    completion(WordFeed(with: [String : Any]()))
                 }
                 
 //
