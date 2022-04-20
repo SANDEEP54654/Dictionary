@@ -18,6 +18,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var btnAudio: UIButton!
     
+    @IBOutlet weak var btnBookmark: UIButton!
+    
     var word = WordFeed(with: [String : Any]())
     
     var player:AVPlayer?
@@ -30,7 +32,7 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func displayData(_ withWord : WordFeed){
+    func displayData(_ withWord : WordFeed, _ isFavorite: Bool){
         
         self.word = withWord
         
@@ -38,6 +40,12 @@ class DetailViewController: UIViewController {
         self.lblPhonetic.text = withWord.phonetic
 
         self.btnAudio.isEnabled = (self.word.audioUrl != "")
+        
+        let image = isFavorite ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
+        
+        self.btnBookmark.setImage(image, for: .normal)
+        
+        self.btnBookmark.isEnabled = true
         
         self.tableView.reloadData()
     }
@@ -54,14 +62,18 @@ class DetailViewController: UIViewController {
             
             player?.play()
         }
-        
     }
     
     @IBAction func saveWord(_ sender: UIButton) {
+
+       var isBookmarked =  ViewManager.setBookmarkImage(for: sender)
         
-        
+        if word.word != "" {
+            DataHandler().updateWord(value: word.word, !isBookmarked)
+        }
+
+        print(isBookmarked)
     }
-    
     
     
     /*
@@ -88,7 +100,6 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         return self.word.meanings[section].definitions.count
     }
 
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let definition = self.word.meanings[indexPath.section].definitions[indexPath.row]

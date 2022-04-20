@@ -10,6 +10,7 @@
 		C76C72E527F5C13600E15845 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C72E427F5C13600E15845 /* DetailViewController.swift */; };
 		C76C72E727F5C14F00E15845 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C72E627F5C14F00E15845 /* HistoryViewController.swift */; };
 		C76C72E927F5C1AF00E15845 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C72E827F5C1AF00E15845 /* NavigationHelper.swift */; };
+		C77D2260280D92CB00D4C075 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77D225F280D92CB00D4C075 /* ViewManager.swift */; };
 		C78770CF27F71F5D00F4419A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78770CE27F71F5D00F4419A /* APIManager.swift */; };
 		C78770D127F7225D00F4419A /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78770D027F7225D00F4419A /* Word.swift */; };
 		C78770D427F724A700F4419A /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78770D327F724A700F4419A /* DataHandler.swift */; };
@@ -26,6 +27,7 @@
 		C76C72E427F5C13600E15845 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C76C72E627F5C14F00E15845 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		C76C72E827F5C1AF00E15845 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
+		C77D225F280D92CB00D4C075 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		C78770CE27F71F5D00F4419A /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		C78770D027F7225D00F4419A /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		C78770D327F724A700F4419A /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C77D225E280D92B200D4C075 /* ViewManager */ = {
+			isa = PBXGroup;
+			children = (
+				C77D225F280D92CB00D4C075 /* ViewManager.swift */,
+			);
+			path = ViewManager;
+			sourceTree = "<group>";
+		};
 		C78770CD27F71EDF00F4419A /* WebServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +97,7 @@
 		C7C757B127F31E1C00F328F2 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				C77D225E280D92B200D4C075 /* ViewManager */,
 				C78770D227F7242000F4419A /* Models */,
 				C78770CD27F71EDF00F4419A /* WebServices */,
 				C7C757B227F31E1C00F328F2 /* AppDelegate.swift */,
@@ -181,6 +192,7 @@
 				C78770CF27F71F5D00F4419A /* APIManager.swift in Sources */,
 				C76C72E527F5C13600E15845 /* DetailViewController.swift in Sources */,
 				C76C72E727F5C14F00E15845 /* HistoryViewController.swift in Sources */,
+				C77D2260280D92CB00D4C075 /* ViewManager.swift in Sources */,
 				C7C757B327F31E1C00F328F2 /* AppDelegate.swift in Sources */,
 				C78770D427F724A700F4419A /* DataHandler.swift in Sources */,
 				C7C757B527F31E1C00F328F2 /* SceneDelegate.swift in Sources */,

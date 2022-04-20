@@ -47,6 +47,19 @@ class DataHandler {
         return WordFeed(with: [String : Any]())
     }
     
+    func parseWord(for managedObject: NSManagedObject?) -> WordFeed?{
+        
+        
+        if let jsonData = managedObject?.value(forKey: "wordData") as? NSData{
+            if let json  = try? JSONSerialization.jsonObject(with: jsonData as Data, options: []) as? [Any] {
+                
+                return self.parseWord(from: json, jsonData as Data)
+            }
+        }
+        
+        return nil
+    }
+    
 }
 
 //MARK: Core Data
@@ -69,10 +82,11 @@ extension DataHandler{
             
             // Create Word Obj
             let word = Word(context: managedObjectContext)
-            
+     
             // Add attributes
             word.word = wordTitle
             word.wordData = data
+            word.isFavorite = false
             
             do {
                 // Save Word to Persistent Store
@@ -82,19 +96,23 @@ extension DataHandler{
                 print("Unable to Save Book, \(error)")
             }
         }
-        
     }
     
     // Fetch
     
-    func fetchData(for wordTitle: String) -> [NSManagedObject]?{
+    func fetchData(for wordTitle: String, isFavorite: Bool = false) -> [NSManagedObject]?{
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Word")
         
         if wordTitle != ""{
             request.predicate = NSPredicate(format: "word = %@", wordTitle)
         }
+        else if isFavorite{
+           request.predicate = NSPredicate(format: "isFavorite = %d", true)
+        }
+        
         //
+        
         request.returnsObjectsAsFaults = false
         
         do {
@@ -110,4 +128,27 @@ extension DataHandler{
         
         return nil
     }
+    
+    func updateWord( value: String, _ isFavorite : Bool) {
+        
+        if let managedObjects = self.fetchData(for: value, isFavorite: isFavorite){
+            
+            (managedObjects.first as! Word).isFavorite = !isFavorite
+            
+            self.managedObjectContext = persistentContainer.viewContext
+            
+            guard let managedObjectContext = self.managedObjectContext else {
+                fatalError("No Managed Object Context Available")
+            }
+            
+            do {
+                // Save Word to Persistent Store
+                try managedObjectContext.save()
+                
+            } catch {
+                print("Unable to Save Book, \(error)")
+            }
+        }
+    }
+    
 }

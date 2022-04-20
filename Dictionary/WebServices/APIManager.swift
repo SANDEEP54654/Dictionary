@@ -14,7 +14,7 @@ class APIManager {
     
     static let shared = APIManager()
     
-    func fetchMeaning(for word: String, _ completion: @escaping(WordFeed) -> Void)  {
+    func fetchMeaning(for word: String, _ completion: @escaping(WordFeed, _ isFavorite: Bool) -> Void)  {
         
         let dataHelper = DataHandler()
         
@@ -22,7 +22,7 @@ class APIManager {
             
             if let jsonData = managedObjects.first?.value(forKey: "wordData") as? NSData{
                 if let json  = try? JSONSerialization.jsonObject(with: jsonData as Data, options: []) as? [Any] {
-                    completion( dataHelper.parseWord(from: json, jsonData as Data))
+                    completion( dataHelper.parseWord(from: json, jsonData as Data), (managedObjects.first! as! Word).isFavorite)
                     
                     return
                 }
@@ -44,10 +44,10 @@ class APIManager {
             if let jsonData = data {
                 
                 if let json  = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [Any] {
-                    completion( dataHelper.parseWord(from: json, jsonData))
+                    completion( dataHelper.parseWord(from: json, jsonData), false)
                 }
                 else{
-                    completion(WordFeed(with: [String : Any]()))
+                    completion(WordFeed(with: [String : Any]()), false)
                 }
                 
 //

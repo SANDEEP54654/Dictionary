@@ -37,13 +37,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="unC-MC-RhB">
-                                <rect key="frame" x="16" y="139" width="382" height="624"/>
+                                <rect key="frame" x="16" y="139" width="382" height="658"/>
                                 <connections>
                                     <segue destination="oSh-lP-kxn" kind="embed" id="fB4-5h-0Cq"/>
                                 </connections>
                             </containerView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gei-mH-J9Q">
-                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem systemItem="search" id="1WV-60-BE6"/>
@@ -51,7 +51,7 @@
                                 </items>
                             </tabBar>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="UhK-pN-Scb">
-                                <rect key="frame" x="188.5" y="432.5" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="449.5" width="37" height="37"/>
                                 <color key="color" systemColor="linkColor"/>
                             </activityIndicatorView>
                         </subviews>
@@ -90,29 +90,58 @@
             <objects>
                 <viewController storyboardIdentifier="HistoryVC" id="oSh-lP-kxn" customClass="HistoryViewController" customModule="Dictionary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="1" contentMode="scaleToFill" id="zkQ-EV-a3l">
-                        <rect key="frame" x="0.0" y="0.0" width="382" height="624"/>
+                        <rect key="frame" x="0.0" y="0.0" width="382" height="658"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1t2-ok-3iR">
-                                <rect key="frame" x="24" y="44" width="334" height="32"/>
+                                <rect key="frame" x="16" y="44" width="350" height="32"/>
                                 <segments>
                                     <segment title="History"/>
                                     <segment title="Favorite"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentTapped:" destination="oSh-lP-kxn" eventType="valueChanged" id="PZl-VT-HaH"/>
+                                </connections>
                             </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u4Y-u9-JmT">
+                                <rect key="frame" x="16" y="91" width="350" height="551"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WordCell" id="rSx-2e-gi5">
+                                        <rect key="frame" x="0.0" y="24.5" width="350" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rSx-2e-gi5" id="3D7-d8-GBv">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="oSh-lP-kxn" id="mGF-Fh-hbJ"/>
+                                    <outlet property="delegate" destination="oSh-lP-kxn" id="Z3z-MB-GTU"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YyN-jP-9QZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="1t2-ok-3iR" secondAttribute="trailing" constant="8" id="XXp-F4-8mn"/>
+                            <constraint firstItem="u4Y-u9-JmT" firstAttribute="leading" secondItem="1t2-ok-3iR" secondAttribute="leading" id="JF0-eH-udl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1t2-ok-3iR" secondAttribute="trailing" id="XXp-F4-8mn"/>
+                            <constraint firstItem="u4Y-u9-JmT" firstAttribute="trailing" secondItem="1t2-ok-3iR" secondAttribute="trailing" id="YCx-hA-JJw"/>
+                            <constraint firstItem="u4Y-u9-JmT" firstAttribute="top" secondItem="1t2-ok-3iR" secondAttribute="bottom" constant="16" id="ZUa-we-vwO"/>
                             <constraint firstItem="1t2-ok-3iR" firstAttribute="top" secondItem="zkQ-EV-a3l" secondAttribute="topMargin" id="e58-2w-utE"/>
-                            <constraint firstItem="1t2-ok-3iR" firstAttribute="leading" secondItem="zkQ-EV-a3l" secondAttribute="leadingMargin" constant="8" id="kBv-BS-Vhf"/>
+                            <constraint firstItem="YyN-jP-9QZ" firstAttribute="bottom" secondItem="u4Y-u9-JmT" secondAttribute="bottom" constant="16" id="fZb-zG-hyY"/>
+                            <constraint firstItem="1t2-ok-3iR" firstAttribute="leading" secondItem="zkQ-EV-a3l" secondAttribute="leadingMargin" id="kBv-BS-Vhf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="segmentedControl" destination="1t2-ok-3iR" id="rnq-YN-8QX"/>
+                        <outlet property="tableView" destination="u4Y-u9-JmT" id="fyw-Eh-VHU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Dr-rz-59X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="57"/>
+            <point key="canvasLocation" x="2066.666666666667" y="56.919642857142854"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="L5e-lh-as8">
@@ -131,7 +160,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yma-EC-OSz">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yma-EC-OSz">
                                         <rect key="frame" x="382" y="3" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="Tqw-6M-OnP"/>
@@ -251,6 +280,7 @@
                     </view>
                     <connections>
                         <outlet property="btnAudio" destination="Un4-0t-ldW" id="JfF-qh-tDg"/>
+                        <outlet property="btnBookmark" destination="yma-EC-OSz" id="iKA-j6-U3f"/>
                         <outlet property="lblPhonetic" destination="og1-Am-nh6" id="dpf-5d-H6a"/>
                         <outlet property="lblWord" destination="cJJ-IK-cQu" id="Wvd-FK-Vg1"/>
                         <outlet property="tableView" destination="LSj-OQ-OWG" id="arx-9X-v9U"/>

@@ -56,11 +56,18 @@ class ViewController: UIViewController{
     
     fileprivate func animateTop(withConstant: CGFloat){
      
-        UIView.animate(withDuration: 0.5) {
+        if withConstant != 8{
+            UIView.animate(withDuration: 0.5) {
+                self.top.constant = withConstant
+                self.view.layoutIfNeeded()
+            } completion: { success in
+            }
+        }else{
             self.top.constant = withConstant
             self.view.layoutIfNeeded()
-        } completion: { success in
         }
+        
+        
 
     }
 }
@@ -81,6 +88,15 @@ extension ViewController: UITabBarDelegate{
             self.contentView.sendSubviewToBack(self.detailsVC.view)
             
             self.animateTop(withConstant: 8)
+            
+            for child in self.children{
+                
+                if child is HistoryViewController{
+                    
+                    (child as! HistoryViewController).refreshWords(forFavorite: false, true)
+                }
+            }
+            
         }
         
     }
@@ -95,13 +111,16 @@ extension ViewController: UISearchBarDelegate{
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
         
-        APIManager.shared.fetchMeaning(for: searchBar.text ?? "") { word in
+        self.detailsVC.btnBookmark.isEnabled = false
+        
+        APIManager.shared.fetchMeaning(for: searchBar.text ?? "") { (word,isFavorite)  in
+            
             print("Phonetic: \(word.phonetic) Word: \(word.word)")
             
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
-                self.detailsVC.displayData(word)
+                self.detailsVC.displayData(word, isFavorite)
             }
         }
         
