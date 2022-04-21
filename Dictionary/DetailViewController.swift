@@ -20,9 +20,14 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var btnBookmark: UIButton!
     
+    @IBOutlet weak var messageView: UIView!
+    
+    @IBOutlet weak var lblMessage: UILabel!
     var word = WordFeed(with: [String : Any]())
     
     var player:AVPlayer?
+    
+    var wordText = ""
     
     var playerItem:AVPlayerItem?
     
@@ -30,6 +35,15 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
+        
+        if wordText != "" {
+            APIManager.shared.fetchMeaning(for: wordText) { (word,isFavorite)  in
+                DispatchQueue.main.async {
+                    self.displayData(word, isFavorite)
+                }
+            }
+        }
     }
     
     func displayData(_ withWord : WordFeed, _ isFavorite: Bool){
@@ -37,6 +51,15 @@ class DetailViewController: UIViewController {
         self.word = withWord
         
         self.lblWord.text = withWord.word
+        
+        self.messageView.isHidden = withWord.word != ""
+        
+        if withWord.word == ""{
+            //Change message for empty results
+            self.lblMessage.text = Message.notfound.rawValue
+            //
+        }
+        
         self.lblPhonetic.text = withWord.phonetic
 
         self.btnAudio.isEnabled = (self.word.audioUrl != "")

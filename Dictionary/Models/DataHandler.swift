@@ -8,6 +8,11 @@
 import Foundation
 import CoreData
 
+enum Message : String {
+    case notfound = "Couldn't find the meaning!"
+    case search   = "Learn Something New!"
+}
+
 class DataHandler {
     
     //MARK:- Variables

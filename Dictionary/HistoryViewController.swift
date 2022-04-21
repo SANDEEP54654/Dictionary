@@ -30,6 +30,10 @@ class HistoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        if self.segmentedControl.selectedSegmentIndex == 1 {
+            self.reloadList(forFavorite: true)
+        }
+        
     }
     
     func refreshWords(forFavorite: Bool, _ viewAppeared: Bool = false) {
@@ -38,13 +42,17 @@ class HistoryViewController: UIViewController {
             self.segmentedControl.selectedSegmentIndex = 0
         }
         
+        self.reloadList(forFavorite: forFavorite)
+    }
+    
+    func reloadList(forFavorite : Bool){
         if let objects = dataHelpper.fetchData(for: "", isFavorite: forFavorite){
             
             self.wordObjects = objects
             self.tableView.reloadData()
         }
     }
-
+    
     // MARK: - IBAction
     
     @IBAction func segmentTapped(_ sender: UISegmentedControl) {
@@ -85,5 +93,17 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         
+        if let wordFeed = self.dataHelpper.parseWord(for: self.wordObjects[indexPath.row]){
+         
+            let detailsVC = NavigationHelper.viewController(with: .detail) as! DetailViewController
+            
+            detailsVC.wordText = wordFeed.word
+            
+            self.navigationController?.pushViewController(detailsVC, animated: true)
+        }
+        
+    }
     
 }

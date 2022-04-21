@@ -32,6 +32,9 @@ class ViewController: UIViewController{
         self.activityIndicator.isHidden = true
         
         self.addDetailView()
+        
+        self.showRandomWord()
+        
     }
     
     //MARK:- Add Custom Views
@@ -50,6 +53,25 @@ class ViewController: UIViewController{
             
         }
         
+    }
+    
+    func showRandomWord(){
+        
+        if let objects = DataHandler().fetchData(for: "", isFavorite: false){
+            
+            if let randomElement = objects.randomElement(){
+                
+                if let wordFeed = DataHandler().parseWord(for: randomElement){
+                    
+                    // Show RandomWor
+                    let vc = NavigationHelper.viewController(with: .random) as! RandomViewController
+                    vc.randomWord = wordFeed.word
+                    vc.modalPresentationStyle = .overCurrentContext
+                    vc.modalTransitionStyle = .crossDissolve
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     //MARK:- Animations

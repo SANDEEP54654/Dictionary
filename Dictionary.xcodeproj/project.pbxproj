@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7190AC828117D7100F33F24 /* RandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7190AC728117D7100F33F24 /* RandomViewController.swift */; };
 		C76C72E527F5C13600E15845 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C72E427F5C13600E15845 /* DetailViewController.swift */; };
 		C76C72E727F5C14F00E15845 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C72E627F5C14F00E15845 /* HistoryViewController.swift */; };
 		C76C72E927F5C1AF00E15845 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C72E827F5C1AF00E15845 /* NavigationHelper.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C7190AC728117D7100F33F24 /* RandomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomViewController.swift; sourceTree = "<group>"; };
 		C76C72E427F5C13600E15845 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C76C72E627F5C14F00E15845 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		C76C72E827F5C1AF00E15845 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				C77D225F280D92CB00D4C075 /* ViewManager.swift */,
+				C76C72E827F5C1AF00E15845 /* NavigationHelper.swift */,
 			);
 			path = ViewManager;
 			sourceTree = "<group>";
@@ -102,10 +105,10 @@
 				C78770CD27F71EDF00F4419A /* WebServices */,
 				C7C757B227F31E1C00F328F2 /* AppDelegate.swift */,
 				C7C757B427F31E1C00F328F2 /* SceneDelegate.swift */,
-				C76C72E827F5C1AF00E15845 /* NavigationHelper.swift */,
 				C7C757B627F31E1C00F328F2 /* ViewController.swift */,
 				C76C72E427F5C13600E15845 /* DetailViewController.swift */,
 				C76C72E627F5C14F00E15845 /* HistoryViewController.swift */,
+				C7190AC728117D7100F33F24 /* RandomViewController.swift */,
 				C7C757B827F31E1C00F328F2 /* Main.storyboard */,
 				C7C757BE27F31E1C00F328F2 /* Assets.xcassets */,
 				C7C757C027F31E1C00F328F2 /* LaunchScreen.storyboard */,
@@ -194,6 +197,7 @@
 				C76C72E727F5C14F00E15845 /* HistoryViewController.swift in Sources */,
 				C77D2260280D92CB00D4C075 /* ViewManager.swift in Sources */,
 				C7C757B327F31E1C00F328F2 /* AppDelegate.swift in Sources */,
+				C7190AC828117D7100F33F24 /* RandomViewController.swift in Sources */,
 				C78770D427F724A700F4419A /* DataHandler.swift in Sources */,
 				C7C757B527F31E1C00F328F2 /* SceneDelegate.swift in Sources */,
 			);

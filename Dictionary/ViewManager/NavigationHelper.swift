@@ -10,8 +10,9 @@ import UIKit
 
 
 enum VCIdentifier: String {
-    case detail = "DetailVC"
-    case history = "HistoryVC"
+    case detail     = "DetailVC"
+    case history    = "HistoryVC"
+    case random     = "RandomWord"
 }
 
 struct NavigationHelper {
